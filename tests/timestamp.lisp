@@ -1,4 +1,4 @@
-(in-package :ltd-tests)
+(in-package :time-span-tests)
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (local-time:enable-read-macros))

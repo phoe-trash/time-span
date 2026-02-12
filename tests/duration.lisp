@@ -1,4 +1,4 @@
-(in-package :ltd-tests)
+(in-package :time-span-tests)
 
 (5am:test duration-equality
   (5am:is (duration= (duration :day 1) (duration :hour 24))))

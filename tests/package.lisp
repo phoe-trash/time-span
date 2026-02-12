@@ -1,7 +1,7 @@
 (in-package :cl-user)
 
-(defpackage :local-time-duration-tests
+(defpackage :time-span-tests
   (:use :common-lisp
         :cl-user
-        :ltd)
-  (:nicknames :ltd-tests))
+        :time-span)
+  (:nicknames :time-span-tests))

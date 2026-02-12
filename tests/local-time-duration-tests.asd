@@ -1,8 +1,8 @@
-(defpackage :local-time-duration-tests-system (:use #:asdf #:cl))
-(in-package :local-time-duration-tests-system)
+(defpackage :time-span-tests-system (:use #:asdf #:cl))
+(in-package :time-span-tests-system)
 
-(defsystem :local-time-duration-tests
-    :depends-on (:local-time-duration :fiveam)
+(defsystem :time-span-tests
+    :depends-on (:time-span :fiveam)
     :serial t
     :components
     ((:file "package")
