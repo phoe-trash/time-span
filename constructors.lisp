@@ -70,10 +70,8 @@ duration components."
                 (floor remaining-nanosecond +nanoseconds-per-minute+)
               (multiple-value-bind (second nanosecond)
                   (floor remaining-nanosecond +nanoseconds-per-second+)
-                (if (and (= 0 year) (= 0 month))
-                    (values 0 0 week day hour minute second nanosecond)
-                    (values year month 0 (+ (* 7 week) day)
-                            hour minute second nanosecond))))))))))
+                (values year month week day
+                        hour minute second nanosecond)))))))))
 
 (defun duration (&key (year 0) (month 0) (week 0) (day 0) (hour 0)
                    (minute 0) (second 0) (nanosecond 0))
@@ -85,9 +83,13 @@ Durations are normalized, that is, (duration :hour 1) and (duration :minute
 Year and month elements are an exception, since they cannot be normalized
 losslessly."
   (flet ((nonzerop (x) (not (zerop x))))
-    (when (and (nonzerop week) (or (nonzerop year) (nonzerop month)))
-      (error "~@<Invalid timestamp - weeks are not allowed to be passed ~
-                 together with years or months.~:@>")))
+    ;; TODO maybe this whole dance is not necessary and we can have weeks
+    ;; along with months/years. Check with ISO-8601-2.
+    ;; TODO checked, yup, we can have them. Time to simplify the class
+    ;; structure again and remove unneeded PROTEST/BASE dependency.
+    (unless (and (zerop month) (zerop year))
+      (setf days (+ days (* 7 weeks))
+            weeks 0)))
   (multiple-value-bind (total-month total-nanosecond)
       (denormalize year month week day hour minute second nanosecond)
     (multiple-value-bind (year month week day hour minute second nanosecond)

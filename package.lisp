@@ -20,6 +20,7 @@
    #:duration-weeks)
   ;; constructors.lisp
   (:export
+   #:invalid-timestamp-element-signs
    #:denormalize
    #:normalize
    #:duration

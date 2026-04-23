@@ -1,6 +1,6 @@
 ;; TODO handle cl-postgres
 (defsystem #:time-span
-  :description "Durations with full ISO8601 support and local-time integration"
+  :description "Durations with ISO 8601-2 support and local-time integration"
   :version "1.0"
   :author "Michał \"phoe\" Herda and WebCheckout, Inc."
   :license "MIT"
